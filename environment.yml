@@ -1,0 +1,29 @@
+# ATMDB/environment.yml
+name: atmdb-dev
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  
+  # Python for auxiliary tools and testing
+  - python=3.9
+  - numpy
+  - scipy
+  - matplotlib
+  - h5py
+  - pandas
+  - xarray
+
+  
+  # Version control (ensure git-lfs is available)
+  - git
+  - git-lfs
+  
+  
+variables:
+  # Set environment variables for FORTRAN compilation
+  FC: gfortran
+  CC: gcc
+  CXX: g++
+  # Adjust paths as needed for your system
+  ATMDB_ROOT: $CONDA_PREFIX
