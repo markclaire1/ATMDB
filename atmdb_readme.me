@@ -7,16 +7,19 @@ ATMDB is an optional package for the ATMOS FORTRAN project that provides enhance
 - High-performance FORTRAN database interfaces
 - Large file handling with git-lfs
 - Integration with atmospheric science data formats
-- Conda-based dependency management
+- Conda-based dependency management (?)
 
 ## Prerequisites
 
 - Git with git-lfs support
-- FORTRAN compiler (gfortran recommended)
 - Conda package manager
 - Python 3.8+ (for auxiliary tools)
 
 ## Installation
+
+### For ATMOS Users
+If you're using ATMDB as part of the ATMOS project, it should be automatically included as a submodule. See the ATMOS documentation for details.
+
 
 ### For Users
 
@@ -27,6 +30,7 @@ ATMDB is an optional package for the ATMOS FORTRAN project that provides enhance
    
    # On macOS with Homebrew
    brew install git-lfs
+   (or direct from link below if you have an old version of MacOS)
    
    # On Windows, download from: https://git-lfs.github.io/
    ```
@@ -38,7 +42,7 @@ ATMDB is an optional package for the ATMOS FORTRAN project that provides enhance
 
 3. **Clone this repository**:
    ```bash
-   git clone https://github.com/yourusername/ATMDB.git
+   git clone https://github.com/markclaire1/ATMDB.git
    cd ATMDB
    
    # Ensure all LFS files are downloaded
@@ -51,47 +55,15 @@ ATMDB is an optional package for the ATMOS FORTRAN project that provides enhance
    conda activate atmdb-dev
    ```
 
-### For ATMOS Users
-
-If you're using ATMDB as part of the ATMOS project, it should be automatically included as a submodule. See the ATMOS documentation for details.
-
-## Development Setup
-
-### First-time Setup
-```bash
-# Clone with all LFS files
-git clone https://github.com/yourusername/ATMDB.git
-cd ATMDB
-git lfs pull
-
-# Create development environment
-conda env create -f environment.yml
-conda activate atmdb-dev
-
-# Run tests to verify setup
-make test
-```
-
-### Building
-```bash
-# Compile FORTRAN code
-make build
-
-# Or for debug build
-make debug
-```
-
 ## File Organization
 
 ```
 ATMDB/
-├── src/                 # FORTRAN source code
-├── data/               # Data files (tracked with git-lfs)
-├── tests/              # Test suite
-├── docs/               # Documentation
-├── examples/           # Example usage
+├── atmdb.py   #python code for database project
+├── ***Index.hdf5  # Binary files that contains a vector representation of every atmosphere in the database
+├── ***AtmDB.hdf5  # Binary files that contain the atmospheric profiles and boundary conditions
+├──
 ├── environment.yml     # Conda environment
-├── Makefile           # Build configuration
 └── .gitattributes     # git-lfs configuration
 ```
 
@@ -99,12 +71,8 @@ ATMDB/
 
 This repository uses git-lfs for large binary files. The following file types are automatically tracked:
 
-- `*.dat` - Data files
-- `*.bin` - Binary files
-- `*.nc` - NetCDF files
 - `*.hdf5`, `*.h5` - HDF5 files
-- `*.grb`, `*.grb2` - GRIB files
-- `*.tar.gz`, `*.zip` - Archives
+
 
 ### Adding New Large Files
 
@@ -127,14 +95,16 @@ git lfs status
 ```
 
 ## Contributing
+Standard git life cycle:
+  1. Fork the repository
+  2. Create a feature branch (`git checkout -b feature/new-feature`)
+  3. Make your changes
+  4. Run tests (`make test`)
+  5. Commit your changes (`git commit -am 'Add new feature'`)
+  6. Push to the branch (`git push origin feature/new-feature`)
+  7. Create a Pull Request
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Make your changes
-4. Run tests (`make test`)
-5. Commit your changes (`git commit -am 'Add new feature'`)
-6. Push to the branch (`git push origin feature/new-feature`)
-7. Create a Pull Request
+(but see also ATMOS documentation for insuring submodule updates)
 
 ### For Large Files
 When contributing files that should be tracked by git-lfs:
@@ -142,42 +112,3 @@ When contributing files that should be tracked by git-lfs:
 2. Add the file normally with `git add`
 3. Verify it's tracked with `git lfs ls-files`
 4. Commit and push as usual
-
-## Testing
-
-```bash
-# Run all tests
-make test
-
-# Run specific test suites
-make test-unit
-make test-integration
-```
-
-## Documentation
-
-- API documentation: `docs/api/`
-- User guide: `docs/user-guide.md`
-- Developer guide: `docs/developer-guide.md`
-
-## Version Compatibility
-
-| ATMDB Version | ATMOS Version | Notes |
-|---------------|---------------|-------|
-| v1.0.x        | v2.0.x        | Initial release |
-
-## Support
-
-- Issues: [GitHub Issues](https://github.com/yourusername/ATMDB/issues)
-- Documentation: [Wiki](https://github.com/yourusername/ATMDB/wiki)
-- Discussions: [GitHub Discussions](https://github.com/yourusername/ATMDB/discussions)
-
-## License
-
-This project is licensed under the [Your License] - see the LICENSE file for details.
-
-## Acknowledgments
-
-- ATMOS development team
-- Contributors and maintainers
-- Atmospheric science community

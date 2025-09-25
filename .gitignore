@@ -1,0 +1,4 @@
+__pycache__/
+
+#ATMDB specific ignore
+VDS.h5
