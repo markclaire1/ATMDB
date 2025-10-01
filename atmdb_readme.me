@@ -4,15 +4,12 @@ ATMDB is an optional package for the ATMOS FORTRAN project that provides enhance
 
 ## Features
 
-- High-performance FORTRAN database interfaces
+- Saves unique models runs to database, and returns nearest-neighbor models to current boundary conditions
 - Large file handling with git-lfs
-- Integration with atmospheric science data formats
-- Conda-based dependency management (?)
 
 ## Prerequisites
 
 - Git with git-lfs support
-- Conda package manager
 - Python 3.8+ (for auxiliary tools)
 
 ## Installation
@@ -62,7 +59,7 @@ ATMDB/
 ├── atmdb.py   #python code for database project
 ├── ***Index.hdf5  # Binary files that contains a vector representation of every atmosphere in the database
 ├── ***AtmDB.hdf5  # Binary files that contain the atmospheric profiles and boundary conditions
-├──
+├── VDS.h5 (gitignored) #an hdf5 virtual dataset that points to all *Index.hdf5 files
 ├── environment.yml     # Conda environment
 └── .gitattributes     # git-lfs configuration
 ```
@@ -76,7 +73,8 @@ This repository uses git-lfs for large binary files. The following file types ar
 
 ### Adding New Large Files
 
-When adding new large files, they should be automatically tracked if they match the patterns above. To add custom patterns:
+ATMDB will automatically make new .hdf5 files based on your username. These will be automatically tracked by git-lfs.
+While not really neccesary for this project, here is how you would add new binary files
 
 ```bash
 # Track new file types
