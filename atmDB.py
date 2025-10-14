@@ -641,6 +641,8 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
       normvar=-0.2
     elif extras['star'] ==13:  #msun=13 is TOA stellar flux at Earth in ATMOS
       normvar=-0.05*s['extras']['timega'] #this is a linear scaling from -0.2 to 0.2 over 4 Ga through -4Ga, the limits of youngsun.f90
+    elif extras['star'] == 18: #msun=18 in ATMOS is Epsilon Eridani, a K2V star
+      normvar=0.3
     else:
       print('Please add a normalised transform for this STAR into atmDB.py')
       print(extras['star'])
