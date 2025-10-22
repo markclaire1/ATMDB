@@ -580,7 +580,7 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
     elif extras['model'] == 'ATMOS':
       normvar=1.0
     else:
-      print('Please add a normalised transform for this PHOTOCHEMICAL MODEL into atmDB.py')
+      print('Please add a normalized transform for this PHOTOCHEMICAL MODEL into atmDB.py')
       return
         
     x.append(normvar) #(2) add index for model name
@@ -603,7 +603,7 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
     if extras['reactions-file'] == 'reactionrates.csv': #ATMOS default
       normvar=1.0
     else:
-      print('Please add a normalised transform for this REACTIONS FILE into atmDB.py')
+      print('Please add a normalized transform for this REACTIONS FILE into atmDB.py')
       return
     
     x.append(normvar) #(4) reactions-file
@@ -643,8 +643,10 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
       normvar=-0.05*s['extras']['timega'] #this is a linear scaling from -0.2 to 0.2 over 4 Ga through -4Ga, the limits of youngsun.f90
     elif extras['star'] == 18: #msun=18 in ATMOS is Epsilon Eridani, a K2V star
       normvar=0.3
+    elif extras['star'] == 16: #msun=18 in ATMOS is Epsilon Eridani, a K2V star
+      normvar=0.8
     else:
-      print('Please add a normalised transform for this STAR into atmDB.py')
+      print('Please add a normalized transform for this STAR into atmDB.py')
       print(extras['star'])
       return
     
@@ -707,7 +709,7 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
     elif s['planet']['background-gas']=='O2':
       normvar=2.0
     else:
-      print('Please add a normalised transform for this BACKGROUND GAS into atmDB.py')
+      print('Please add a normalized transform for this BACKGROUND GAS into atmDB.py')
       print(s['planet']['background-gas'])
       return
     x.append(normvar) #(15)- index for background gas
@@ -761,7 +763,7 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
     elif s['planet']['hydrogen-escape']['type']=='none':
       normvar=1.0
     else:
-      print('Please add a normalised transform for this HYDROGEN ESCAPE TYPE into atmDB.py')
+      print('Please add a normalized transform for this HYDROGEN ESCAPE TYPE into atmDB.py')
       return
     x.append(normvar) #(22) - index for hydrogen escape
     
@@ -773,7 +775,7 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
     else:
       normvar=-1.0 #value for Moses
       if dlb != 'Moses':
-        print('Please add a normalised transform for this DEFAULT LOWER BOUNDARY into atmDB.py')
+        print('Please add a normalized transform for this DEFAULT LOWER BOUNDARY into atmDB.py')
         return
     x.append(normvar) #(23)- index for default lower boundary conditions
 
@@ -792,7 +794,7 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
       #value is not a float should imply it is a string and that string is ‘manabe’
       normvar=-1.0
       if s['planet']['water']['relative-humidity'] != 'manabe':
-        print('Please add a normalised transform for this RELATIVE HUMIDITY into atmDB.py')
+        print('Please add a normalized transform for this RELATIVE HUMIDITY into atmDB.py')
         return
     except KeyError:  #doesn't exist ( if fix-water-in-trop == false)
       normvar=-2.0
@@ -858,7 +860,7 @@ def mapinput(templatename,pc,reaction_file,star_file,settings_file):
       else:
         normvar=-1.0  #no lightning
     else:
-      print('Please add a normalised transform for LIGHTNING into atmDB.py')
+      print('Please add a normalized transform for LIGHTNING into atmDB.py')
       return
     
     x.append(normvar) #(31) - index for lightning
